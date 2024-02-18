@@ -11,7 +11,9 @@ def selenideVersion = "6.13.0",
     restAssuredVersion = "5.3.0",
     allureVersion = "2.21.0",
     junitVersion = "5.9.3",
-    slf4jVersion = "2.0.7"
+    slf4jVersion = "2.0.7",
+    ownerVersion = "1.0.12",
+    javaClient = "8.3.0"
 
 allure {
     report {
@@ -31,10 +33,13 @@ dependencies {
     testImplementation(
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
-            "io.appium:java-client:8.3.0",
+            "io.qameta.allure:allure-rest-assured:$allureVersion",
+            "io.appium:java-client:$javaClient",
             "io.rest-assured:rest-assured:$restAssuredVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
-            "org.slf4j:slf4j-simple:$slf4jVersion"
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "commons-io:commons-io:2.11.0",
+            "org.aeonbits.owner:owner:$ownerVersion"
     )
 }
 
@@ -46,5 +51,17 @@ tasks.withType(Test) {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
+    }
+}
+
+task android_test(type: Test) {
+    useJUnitPlatform{
+        includeTags("android")
+    }
+}
+
+task ios_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("ios")
     }
 }
