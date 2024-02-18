@@ -1,12 +1,11 @@
 package helpers;
 
-import config.BrowserstackConfig;
 import config.UserConfig;
 import org.aeonbits.owner.ConfigFactory;
 
 import static io.restassured.RestAssured.given;
 
-public class Browserstack{
+public class Browserstack {
 
     public static String videoUrl(String sessionId) {
         UserConfig userConfig = ConfigFactory.create(UserConfig.class, System.getProperties());

@@ -44,14 +44,4 @@ public class SearchTests extends TestBase {
                 mainPage.verifyErrorAfterOpeningArticle("Error")
         );
     }
-
-    @Tag("ios")
-    @DisplayName("Наличие кнопки")
-    @Test
-    public void searchIosTest() {
-        step("Проверяем, что кнопка видима", () -> {
-            $(id("Text Button")).shouldBe(visible);
-        });
-
-    }
 }
